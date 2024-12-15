@@ -7,6 +7,9 @@ const component = () => {
     ws: undefined,
 
     wsConnect(secure = true) {
+      if (location.protocol !== 'https:') {
+        secure = false;
+      }
       const url = `${secure ? 'wss' : 'ws'}://${
         location.host
       }${base_url}api/admin/mangadex/queue`;
