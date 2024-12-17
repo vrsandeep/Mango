@@ -60,6 +60,14 @@ describe "chapter_sort" do
       sorter.compare a, b
     end.should eq ary
   end
+
+  it "clubs Chapter and Ch. together" do
+    ary = ["Vol.1 Chapter 1", "Vol.1 Ch.02", "Vol.2 Ch. 2.5", "Ch. 3", "Ch.04"]
+    sorter = ChapterSorter.new ary
+    ary.reverse.sort! do |a, b|
+      sorter.compare a, b
+    end.should eq ary
+  end
 end
 
 describe "sanitize_filename" do

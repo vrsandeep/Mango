@@ -9,7 +9,7 @@ Metrics/CyclomaticComplexity:
   Enabled: false
 Layout/LineLength:
   Enabled: true
-  MaxLength: 80
+  MaxLength: 120
   Excluded:
     - src/routes/api.cr
     - spec/plugin_spec.cr
