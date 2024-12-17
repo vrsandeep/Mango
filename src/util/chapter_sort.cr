@@ -54,12 +54,16 @@ end
 class ChapterSorter
   @sorted_keys = [] of String
 
-  def get_key_with_variation(key : String, keys : Array(String)) : String | Nil
-    # using keys {} of String => KeyRange, check if the key
-    # belongs to one of the existing keys
-    # eg. if keys has "Ch." and key is "Chapter" or "Chp.", it should return Ch.
-    # Similarly if keys has Vol. and key is Volume, it should return Vol.
-    keys.each do |k|
+  def has_key_with_variation?(
+    key : String, available_keys : Array(String)
+  ) : String | Nil
+    # using available_keys {} of String => KeyRange, check if the key
+    # exists as a variant of an existing key in available_keys.
+    # eg. if available_keys has "Ch." and key is "Chapter" or "Chp.", it
+    # should return "Ch."
+    # Similarly if available_keys has "Vol." and key is "Volume", it
+    # should return "Vol."
+    available_keys.each do |k|
       # select all ASCII alphabets and downcase them
       # https://stackoverflow.com/a/6067606
       sanitized_key = key.gsub(/[^\pL]/, "").downcase
@@ -87,11 +91,11 @@ class ChapterSorter
       # Only use keys that are present in over half of the strings
       .select do |key|
         keys[key].count >= str_ary.size / 2
-    end
+      end
     merge_repeated_key_ranges(top_keys, keys)
 
-    # Get the array of keys string and sort them
     # @sorted_keys is an array of keys sorted by the number of times they appear
+    # in descending order
     @sorted_keys = top_keys
       .sort! do |a_key, b_key|
         a = keys[a_key]
@@ -108,13 +112,14 @@ class ChapterSorter
   end
 
   def merge_repeated_key_ranges(
-    top_keys : Array(String), key_ranges : Hash(String, KeyRange)) : Nil
-    # For keys not belonging to top_keys, check if the key is a 
+    top_keys : Array(String), key_ranges : Hash(String, KeyRange)
+  ) : Nil
+    # For keys not belonging to top_keys, check if the key is a
     # variant of one of the top keys. If it is, merge the key ranges
     key_ranges.each do |key, key_range|
       next if top_keys.any? { |top_key| key == top_key }
 
-      top_key = get_key_with_variation key, top_keys
+      top_key = has_key_with_variation? key, top_keys
       if top_key
         top_key_range = key_ranges[top_key]
         top_key_range.update key_range.min
@@ -141,7 +146,7 @@ class ChapterSorter
   private def str_to_item(str)
     numbers = {} of String => BigDecimal
     scan str do |k, v|
-      sanitized_k = get_key_with_variation k, @sorted_keys
+      sanitized_k = has_key_with_variation? k, @sorted_keys
       if sanitized_k.nil?
         sanitized_k = k
       end
