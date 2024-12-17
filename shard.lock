@@ -2,7 +2,7 @@ version: 2.0
 shards:
   ameba:
     git: https://github.com/crystal-ameba/ameba.git
-    version: 0.14.3
+    version: 1.6.4
 
   archive:
     git: https://github.com/hkalexling/archive.cr.git
@@ -18,19 +18,19 @@ shards:
 
   db:
     git: https://github.com/crystal-lang/crystal-db.git
-    version: 0.10.1
+    version: 0.13.1
 
   duktape:
     git: https://github.com/jessedoyle/duktape.cr.git
-    version: 1.0.0
+    version: 1.1.0
 
   exception_page:
     git: https://github.com/crystal-loot/exception_page.git
-    version: 0.1.5
+    version: 0.5.0
 
   http_proxy:
     git: https://github.com/mamantoha/http_proxy.git
-    version: 0.8.0
+    version: 0.12.1
 
   image_size:
     git: https://github.com/akkoyk/image_size.cr.git
@@ -38,7 +38,7 @@ shards:
 
   kemal:
     git: https://github.com/kemalcr/kemal.git
-    version: 1.0.0
+    version: 1.6.0
 
   kemal-session:
     git: https://github.com/kemalcr/kemal-session.git
@@ -74,9 +74,8 @@ shards:
 
   sqlite3:
     git: https://github.com/crystal-lang/crystal-sqlite3.git
-    version: 0.18.0
+    version: 0.21.0
 
   tallboy:
     git: https://github.com/epoch/tallboy.git
     version: 0.9.3+git.commit.9be1510bb0391c95e92f1b288f3afb429a73caa6
-
