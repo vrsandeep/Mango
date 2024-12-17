@@ -54,7 +54,8 @@ end
 
 describe "chapter_sort" do
   it "sorts correctly" do
-    ary = ["Vol.1 Ch.01", "Vol.1 Ch.02", "Vol.2 Ch. 2.5", "Ch. 3", "Ch.04"]
+    ary = ["Vol.1 Ch.01", "Vol.1 Ch.02", "Vol.2 Ch. 2.5", 
+          "Ch. 3", "Chapter 3", "Ch.04"]
     sorter = ChapterSorter.new ary
     ary.reverse.sort! do |a, b|
       sorter.compare a, b
