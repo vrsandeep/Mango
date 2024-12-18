@@ -9,7 +9,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     runs-on: ubuntu-latest
     container:
-      image: crystallang/crystal:1.0.0-alpine
+      image: crystallang/crystal:1.14.0-alpine
 
     steps:
     - uses: actions/checkout@v4
