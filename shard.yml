@@ -15,7 +15,7 @@ license: MIT
 dependencies:
   kemal:
     github: kemalcr/kemal
-    version: 1.6.0
+    version: 1.0.0
   kemal-session:
     github: kemalcr/kemal-session
     version: 1.0.0
@@ -36,13 +36,13 @@ dependencies:
     version: 0.17.1
   duktape:
     github: jessedoyle/duktape.cr
-    version: 1.1.0
+    version: 1.0.0
   myhtml:
     github: kostya/myhtml
     version: 1.5.8
   http_proxy:
     github: mamantoha/http_proxy
-    version: 0.12.1
+    version: 0.8.0
   image_size:
    github: akkoyk/image_size.cr
    version: 0.5.0
