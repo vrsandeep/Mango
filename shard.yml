@@ -26,8 +26,8 @@ dependencies:
     github: schovi/baked_file_system
     version: 0.10.0
   archive:
-    github: hkalexling/archive.cr
-    version: 0.5.0
+    github: vrsandeep/archive.cr
+    version: 0.6.0
   ameba:
     github: crystal-ameba/ameba
     version: 1.6.4
@@ -36,7 +36,7 @@ dependencies:
     version: 0.17.1
   duktape:
     github: jessedoyle/duktape.cr
-    version: 1.0.0
+    version: 1.1.0
   myhtml:
     github: kostya/myhtml
     version: 1.5.8
