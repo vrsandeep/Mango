@@ -34,6 +34,7 @@ class Server
 
     static_headers do |env, filepath, filestat|
       env.response.headers.add("Access-Control-Allow-Origin", "*")
+      env.response.headers.add("Content-Size", filestat.size.to_s)
     end
 
     Kemal.config.logging = false
