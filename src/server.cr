@@ -32,8 +32,8 @@ class Server
       end
     {% end %}
 
-    static_headers do |response|
-      response.headers.add("Access-Control-Allow-Origin", "*")
+    static_headers do |env, filepath, filestat|
+      env.response.headers.add("Access-Control-Allow-Origin", "*")
     end
 
     Kemal.config.logging = false

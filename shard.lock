@@ -8,6 +8,10 @@ shards:
     git: https://github.com/vrsandeep/archive.cr.git
     version: 0.6.0
 
+  backtracer:
+    git: https://github.com/sija/backtracer.cr.git
+    version: 1.2.2
+
   baked_file_system:
     git: https://github.com/schovi/baked_file_system.git
     version: 0.10.0
@@ -26,7 +30,7 @@ shards:
 
   exception_page:
     git: https://github.com/crystal-loot/exception_page.git
-    version: 0.1.5
+    version: 0.4.1
 
   http_proxy:
     git: https://github.com/mamantoha/http_proxy.git
@@ -38,15 +42,11 @@ shards:
 
   kemal:
     git: https://github.com/kemalcr/kemal.git
-    version: 1.0.0
+    version: 1.6.0
 
   kemal-session:
     git: https://github.com/kemalcr/kemal-session.git
     version: 1.0.0
-
-  kilt:
-    git: https://github.com/jeromegn/kilt.git
-    version: 0.4.1
 
   koa:
     git: https://github.com/hkalexling/koa.git
