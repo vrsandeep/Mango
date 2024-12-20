@@ -112,7 +112,7 @@ class DirEntry < Entry
     cached_sorted_files = @sorted_files
     return cached_sorted_files if cached_sorted_files
     @sorted_files = DirEntry.sorted_image_files @dir_path
-    @sorted_files.not_nil! # ameba:disable Lint/NotNil
+    @sorted_files.not_nil!
   end
 
   def self.image_files(dir_path)

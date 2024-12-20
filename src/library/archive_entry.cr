@@ -49,7 +49,7 @@ class ArchiveEntry < Entry
     file.close
   end
 
-  private def sorted_archive_entries
+  private def sorted_archive_entries(&)
     ArchiveFile.open @zip_path do |file|
       entries = file.entries
         .select { |e|

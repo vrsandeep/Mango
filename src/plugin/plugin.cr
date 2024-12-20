@@ -170,7 +170,8 @@ class Plugin
     Plugin.build_info_ary dir
 
     @info = @@info_ary.find &.id.== id
-    if info_nil = @info
+    info_nil = @info
+    if info_nil.nil?
       raise Error.new "Plugin with ID #{id} not found"
     end
 

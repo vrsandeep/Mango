@@ -28,7 +28,6 @@ abstract class Entry
     end
     # Doing YAML::Any.new(ctx, node) here causes a weird error, so
     #   instead we are using a more hacky approach (see `node_has_key`).
-    # TODO: Use a more elegant approach
     if node_has_key node, "zip_path"
       ArchiveEntry.new ctx, node
     elsif node_has_key node, "dir_path"
@@ -222,8 +221,8 @@ abstract class Entry
     img
   end
 
-  def get_thumbnail : Image?
-    Storage.default.get_thumbnail @id
+  def thumbnail : Image?
+    Storage.default.fetch_thumbnail @id
   end
 
   def date_added : Time

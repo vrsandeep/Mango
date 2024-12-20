@@ -176,7 +176,7 @@ struct APIRouter
         entry = title.get_entry eid
         raise "Entry ID `#{eid}` of `#{title.title}` not found" if entry.nil?
 
-        img = entry.get_thumbnail || entry.read_page 1
+        img = entry.thumbnail || entry.read_page 1
         raise "Failed to get cover of `#{title.title}/#{entry.title}`" if img.nil?
 
         e_tag = Digest::SHA1.hexdigest img.data
@@ -617,10 +617,10 @@ struct APIRouter
         name = env.params.url["name"]
         entry = env.params.query["eid"]?
         if entry.nil?
-          title.set_display_name name
+          title.save_display_name name
         else
           eobj = title.get_entry entry
-          title.set_display_name eobj.not_nil!.title, name
+          title.save_display_name eobj.not_nil!.title, name
         end
       rescue e
         Logger.error e
@@ -806,10 +806,10 @@ struct APIRouter
             end
 
             if entry_id.nil?
-              title.set_cover_url url
+              title.save_cover_url url
             else
               entry_name = title.get_entry(entry_id).not_nil!.title
-              title.set_cover_url entry_name, url
+              title.save_cover_url entry_name, url
             end
           else
             raise "Unkown upload target #{target}"

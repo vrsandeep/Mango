@@ -351,7 +351,7 @@ class Library
     end
 
     entries.each do |e|
-      unless e.get_thumbnail
+      unless e.thumbnail
         e.generate_thumbnail
         # Sleep after each generation to minimize the impact on disk IO
         #   and CPU

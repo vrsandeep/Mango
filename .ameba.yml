@@ -15,3 +15,5 @@ Layout/LineLength:
     - spec/plugin_spec.cr
 Naming/BlockParameterName:
   Enabled: false
+Lint/NotNil:
+  Enabled: false

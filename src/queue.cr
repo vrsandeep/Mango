@@ -3,7 +3,7 @@ require "./util/*"
 
 class Queue
   abstract class Downloader
-    property stopped = false
+    property? stopped = false
     @library_path : String = Config.current.library_path
     @downloading = false
 

@@ -8,7 +8,7 @@ end
 
 class SortOptions
   property method : SortMethod
-  property ascend : Bool
+  property ascend : Bool # ameba:disable Naming/QueryBoolMethods
 
   def initialize(in_method : String? = nil, @ascend = true)
     @method = SortMethod::Auto

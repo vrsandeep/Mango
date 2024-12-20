@@ -413,7 +413,7 @@ class Storage
     end
   end
 
-  def get_thumbnail(id : String) : Image?
+  def fetch_thumbnail(id : String) : Image?
     img = nil
     MainFiber.run do
       get_db do |db|
