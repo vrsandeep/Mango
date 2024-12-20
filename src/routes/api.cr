@@ -177,8 +177,7 @@ struct APIRouter
         raise "Entry ID `#{eid}` of `#{title.title}` not found" if entry.nil?
 
         img = entry.get_thumbnail || entry.read_page 1
-        raise "Failed to get cover of `#{title.title}/#{entry.title}`" \
-           if img.nil?
+        raise "Failed to get cover of `#{title.title}/#{entry.title}`" if img.nil?
 
         e_tag = Digest::SHA1.hexdigest img.data
         if prev_e_tag == e_tag

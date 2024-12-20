@@ -74,10 +74,10 @@ end
 
 macro cors
   env.response.headers["Access-Control-Allow-Methods"] = "HEAD,GET,PUT,POST," \
-  "DELETE,OPTIONS"
+                                                         "DELETE,OPTIONS"
   env.response.headers["Access-Control-Allow-Headers"] = "X-Requested-With," \
-    "X-HTTP-Method-Override, Content-Type, Cache-Control, Accept," \
-    "Authorization"
+                                                         "X-HTTP-Method-Override, Content-Type, Cache-Control, Accept," \
+                                                         "Authorization"
   env.response.headers["Access-Control-Allow-Origin"] = "*"
 end
 
