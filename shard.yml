@@ -42,7 +42,7 @@ dependencies:
     version: 1.5.8
   http_proxy:
     github: mamantoha/http_proxy
-    version: 0.8.0
+    version: 0.12.1
   image_size:
    github: akkoyk/image_size.cr
    version: 0.5.0

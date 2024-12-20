@@ -1,5 +1,7 @@
 ![banner](./public/img/banner-paddings.png)
 
+[![Build Status](https://github.com/vrsandeep/Mango/actions/workflows/dockerhub.yml/badge.svg)](https://github.com/vrsandeep/Mango/actions?query=workflow%3Adockerhub+event%3Apush+branch%3Amaster)
+
 # Notes
 
 The original repo at https://github.com/getmango/Mango has stopped accepting new PRs.

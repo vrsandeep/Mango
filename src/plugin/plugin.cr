@@ -1,6 +1,8 @@
 require "duktape/runtime"
 require "myhtml"
 require "xml"
+require "http/client"
+require "http/headers"
 
 require "./subscriptions"
 

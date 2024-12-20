@@ -27,7 +27,8 @@ test:
 	crystal spec
 
 check:
-	crystal tool format --check
+	#crystal tool format --check
+	crystal tool format; git diff --exit-code
 	./bin/ameba
 	yarn lint
 

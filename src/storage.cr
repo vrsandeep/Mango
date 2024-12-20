@@ -1,3 +1,4 @@
+require "db"
 require "sqlite3"
 require "crypto/bcrypt"
 require "uuid"

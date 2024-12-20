@@ -1,3 +1,6 @@
+require "http/client"
+require "http/headers"
+
 class Plugin
   class Downloader < Queue::Downloader
     use_default
