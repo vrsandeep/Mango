@@ -37,7 +37,7 @@ def get_tempfile(name)
   end
 end
 
-def with_default_config
+def with_default_config(&)
   temp_config = get_tempfile "mango-test-config"
   config = Config.load temp_config.path
   config.set_current
@@ -45,7 +45,7 @@ def with_default_config
   temp_config.delete
 end
 
-def with_storage
+def with_storage(&)
   with_default_config do
     temp_db = get_tempfile "mango-test-db"
     storage = Storage.new temp_db.path, false
@@ -56,7 +56,7 @@ def with_storage
   end
 end
 
-def with_plugin
+def with_plugin(&)
   with_default_config do
     plugin = Plugin.new "test", "spec/asset/plugins"
     yield plugin

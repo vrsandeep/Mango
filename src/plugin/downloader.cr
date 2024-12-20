@@ -31,12 +31,17 @@ class Plugin
       @queue.set_status Queue::JobStatus::Downloading, job
 
       begin
-        unless job.plugin_id
+        plugin_id = job.plugin_id
+        unless plugin_id
           raise "Job does not have a plugin ID specificed"
         end
+        plugin_chapter_id = job.plugin_chapter_id
+        unless plugin_chapter_id
+          raise "Job does not have a plugin chapter ID specificed"
+        end
 
-        plugin = Plugin.new job.plugin_id.not_nil!
-        info = plugin.select_chapter job.plugin_chapter_id.not_nil!
+        plugin = Plugin.new plugin_id
+        info = plugin.select_chapter plugin_chapter_id
 
         pages = info["pages"].as_i
 
@@ -54,8 +59,9 @@ class Plugin
         writer = Compress::Zip::Writer.new zip_path
       rescue e
         @queue.set_status Queue::JobStatus::Error, job
-        unless e.message.nil?
-          @queue.add_message e.message.not_nil!, job
+        message = e.message
+        unless message.nil?
+          @queue.add_message message, job
         end
         @downloading = false
         raise e

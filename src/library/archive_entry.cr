@@ -105,7 +105,7 @@ class ArchiveEntry < Entry
     File.exists? @zip_path
   end
 
-  def self.is_valid?(path : String) : Bool
-    is_supported_file path
+  def self.valid?(path : String) : Bool
+    supported_file? path
   end
 end

@@ -255,7 +255,7 @@ class Queue
     end
   end
 
-  def get_all
+  def fetch_all
     jobs = [] of Job
     MainFiber.run do
       DB.open "sqlite3://#{@path}" do |db|

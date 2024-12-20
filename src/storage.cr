@@ -65,7 +65,7 @@ class Storage
                "#{{"username" => "admin", "password" => random_pw}}"
   end
 
-  private def get_db(&block : DB::Database ->)
+  private def get_db(& : DB::Database ->)
     if @db.nil?
       DB.open "sqlite3://#{@path}" do |db|
         db.exec "PRAGMA foreign_keys = 1"

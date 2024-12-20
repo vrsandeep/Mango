@@ -133,7 +133,7 @@ class Plugin
   end
 
   def info
-    @info.not_nil!
+    @info.not_nil! # ameba:disable Lint/NotNil
   end
 
   def subscribe(subscription : Subscription)
@@ -159,7 +159,10 @@ class Plugin
   def check_subscription(id : String)
     list = list_subscriptions_raw
     sub = list.find &.id.== id
-    Plugin::Updater.default.check_subscription self, sub.not_nil!
+    if sub.nil?
+      raise Error.new "Subscription with ID #{id} not found"
+    end
+    Plugin::Updater.default.check_subscription self, sub
     list.save
   end
 
@@ -167,7 +170,7 @@ class Plugin
     Plugin.build_info_ary dir
 
     @info = @@info_ary.find &.id.== id
-    if @info.nil?
+    if info_nil = @info
       raise Error.new "Plugin with ID #{id} not found"
     end
 
@@ -472,7 +475,10 @@ class Plugin
       begin
         parser = Myhtml::Parser.new html
         attr = parser.body!.children.first.attribute_by name
-        env.push_string attr.not_nil!
+        if attr.nil?
+          raise "Attribute `#{name}` not found"
+        end
+        env.push_string attr
       rescue
         env.push_undefined
       end

@@ -7,7 +7,8 @@ enum SortMethod
 end
 
 class SortOptions
-  property method : SortMethod, ascend : Bool
+  property method : SortMethod
+  property ascend : Bool
 
   def initialize(in_method : String? = nil, @ascend = true)
     @method = SortMethod::Auto

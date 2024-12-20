@@ -48,11 +48,20 @@ The official docker images are available on [Dockerhub](https://hub.docker.com/r
 
 ### Build from source
 
-1. Make sure you have `crystal`, `shards` and `yarn` installed. You might also need to install the development headers of some libraries. Please see the [Dockerfile](https://github.com/hkalexling/Mango/blob/master/Dockerfile) for the full list of dependencies
+1. Make sure you have `crystal`, `shards` and `yarn` installed. You might also need to install the development headers of some libraries. Please see the [Dockerfile](./Dockerfile) for the full list of dependencies
 2. Clone the repository
 3. `make && sudo make install`
 4. Start Mango by running the command `mango`
 5. Head over to `localhost:9000` to log in
+
+### Local Development:
+
+1. If you are running MacOS, make sure to specify platform `--platform linux/amd64` to docker run
+```shell
+docker run --platform linux/amd64 --rm -ti -v $PWD:/mango crystallang/crystal:1.14.0-alpine sh
+```
+2. `cd mango`  inside the container.
+3. Checkout [build.yml](./.github/workflows/build.yml) for complete steps.
 
 ## Usage
 

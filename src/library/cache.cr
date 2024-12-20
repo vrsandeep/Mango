@@ -88,7 +88,15 @@ class SortedTitlesCacheEntry < CacheEntry(Array(String), Array(Title))
   end
 
   def self.to_return_t(value : Array(String))
-    value.map { |title_id| Library.default.title_hash[title_id].not_nil! }
+    value.map do |title_id|
+      title_hash = Library.default.title_hash[title_id]
+      if title_hash.nil?
+        Logger.error "Title not found: #{title_id}"
+        raise "Title not found: #{title_id}"
+      else
+        title_hash
+      end
+    end
   end
 
   def instance_size
@@ -195,16 +203,16 @@ class LRUCache
     Logger.debug "-------------------"
   end
 
-  private def self.is_cache_full
+  private def self.cache_full?
     sum = @@cache.sum { |_, entry| entry.instance_size }
     sum > @@limit
   end
 
   private def self.remove_least_recent_access
-    if @@should_log && is_cache_full
+    if @@should_log && cache_full?
       Logger.debug "Removing entries from LRUCache"
     end
-    while is_cache_full && @@cache.size > 0
+    while cache_full? && @@cache.size > 0
       min_tuple = @@cache.min_by { |_, entry| entry.atime }
       min_key = min_tuple[0]
       min_entry = min_tuple[1]

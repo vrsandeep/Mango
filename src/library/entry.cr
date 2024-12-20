@@ -243,7 +243,7 @@ abstract class Entry
   # Hack to have abstract class methods
   # https://github.com/crystal-lang/crystal/issues/5956
   private module ClassMethods
-    abstract def is_valid?(path : String) : Bool
+    abstract def valid?(path : String) : Bool
   end
 
   macro inherited

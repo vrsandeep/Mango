@@ -26,7 +26,7 @@ class DirEntry < Entry
       return
     end
 
-    unless DirEntry.is_valid? @dir_path
+    unless DirEntry.valid? @dir_path
       @err_msg = "Directory #{@dir_path} is not valid directory entry."
       Logger.warn "#{@err_msg} Please make sure the " \
                   "directory has valid images."
@@ -51,9 +51,9 @@ class DirEntry < Entry
     end
     @id = id
 
-    @mtime = sorted_files.map do |file_path|
+    @mtime = sorted_files.max_of do |file_path|
       File.info(file_path).modification_time
-    end.max
+    end
     @pages = sorted_files.size
   end
 
@@ -78,7 +78,10 @@ class DirEntry < Entry
     sorted_files.each_with_index do |path, i|
       data = File.read(path).to_slice
       begin
-        data.not_nil!
+        if data.nil?
+          Logger.warn "Failed to read page #{i} of entry #{@dir_path}."
+          raise "Failed to read page #{i} of entry #{@dir_path}."
+        end
         size = ImageSize.get data
         sizes << {
           "width"  => size.width,
@@ -105,18 +108,18 @@ class DirEntry < Entry
     existence
   end
 
-  def sorted_files
+  def sorted_files : Array(String)
     cached_sorted_files = @sorted_files
     return cached_sorted_files if cached_sorted_files
     @sorted_files = DirEntry.sorted_image_files @dir_path
-    @sorted_files.not_nil!
+    @sorted_files.not_nil! # ameba:disable Lint/NotNil
   end
 
   def self.image_files(dir_path)
     Dir.entries(dir_path)
       .reject(&.starts_with? ".")
       .map { |fn| File.join dir_path, fn }
-      .select { |fn| is_supported_image_file fn }
+      .select { |fn| supported_image_file? fn }
       .reject { |fn| File.directory? fn }
       .select { |fn| File::Info.readable? fn }
   end
@@ -126,7 +129,7 @@ class DirEntry < Entry
       .sort { |a, b| compare_numerically a, b }
   end
 
-  def self.is_valid?(path : String) : Bool
+  def self.valid?(path : String) : Bool
     image_files(path).size > 0
   end
 end

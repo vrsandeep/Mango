@@ -32,7 +32,7 @@ class Server
       end
     {% end %}
 
-    static_headers do |env, filepath, filestat|
+    static_headers do |env, _, filestat|
       env.response.headers.add("Access-Control-Allow-Origin", "*")
       env.response.headers.add("Content-Size", filestat.size.to_s)
     end

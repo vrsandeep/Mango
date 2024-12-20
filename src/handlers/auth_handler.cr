@@ -106,7 +106,7 @@ class AuthHandler < Kemal::Handler
 
     # Check admin access when requesting an admin page
     if request_path_startswith env, %w(/admin /api/admin /download)
-      unless is_admin? env
+      unless admin_user? env
         env.response.status_code = 403
         return send_error_page "HTTP 403: You are not authorized to visit " \
                                "#{env.request.path}"

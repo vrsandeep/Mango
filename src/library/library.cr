@@ -128,7 +128,7 @@ class Library
     end
 
     # Helper function from src/util/util.cr
-    sort_titles titles, opt.not_nil!, username
+    sort_titles titles, opt, username
   end
 
   def deep_titles

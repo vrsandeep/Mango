@@ -13,3 +13,5 @@ Layout/LineLength:
   Excluded:
     - src/routes/api.cr
     - spec/plugin_spec.cr
+Naming/BlockParameterName:
+  Enabled: false
