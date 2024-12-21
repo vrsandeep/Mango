@@ -3,7 +3,7 @@ require "./util/*"
 
 class Queue
   abstract class Downloader
-    property stopped = false
+    property? stopped = false
     @library_path : String = Config.current.library_path
     @downloading = false
 
@@ -255,7 +255,7 @@ class Queue
     end
   end
 
-  def get_all
+  def fetch_all
     jobs = [] of Job
     MainFiber.run do
       DB.open "sqlite3://#{@path}" do |db|

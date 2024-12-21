@@ -50,19 +50,20 @@ struct Filter
   end
 
   def match_chapter(obj : JSON::Any) : Bool
-    return true if value.nil? || value.to_s.empty?
+    current_val = value
+    return true if current_val.nil? || current_val.to_s.empty?
     raw_value = obj[key]
     case type
     when FilterType::String
-      raw_value.as_s.downcase == value.to_s.downcase
+      raw_value.as_s.downcase == current_val.to_s.downcase
     when FilterType::NumMin, FilterType::DateMin
-      BigFloat.new(raw_value.as_s) >= BigFloat.new value.not_nil!.to_f32
+      BigFloat.new(raw_value.as_s) >= BigFloat.new current_val.to_f32
     when FilterType::NumMax, FilterType::DateMax
-      BigFloat.new(raw_value.as_s) <= BigFloat.new value.not_nil!.to_f32
+      BigFloat.new(raw_value.as_s) <= BigFloat.new current_val.to_f32
     when FilterType::Array
-      return true if value == "all"
+      return true if current_val == "all"
       raw_value.as_s.downcase.split(",")
-        .map(&.strip).includes? value.to_s.downcase.strip
+        .map(&.strip).includes? current_val.to_s.downcase.strip
     else
       false
     end

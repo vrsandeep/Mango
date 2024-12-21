@@ -1,13 +1,16 @@
 require "http_proxy"
+require "http/client"
 
 # Monkey-patch `HTTP::Client` to make it respect the `*_PROXY`
 #   environment variables
 module HTTP
   class Client
-    private def self.exec(uri : URI, tls : TLSContext = nil)
+    private def self.exec(uri : URI, tls : TLSContext = nil, &)
       Logger.debug "Setting proxy"
       previous_def uri, tls do |client, path|
-        client.set_proxy get_proxy uri
+        if prxy = get_proxy(uri)
+          client.proxy = prxy
+        end
         yield client, path
       end
     end
@@ -35,8 +38,12 @@ private def env_to_proxy(key : String) : HTTP::Proxy::Client?
 
   begin
     uri = URI.parse val
-    HTTP::Proxy::Client.new uri.hostname.not_nil!, uri.port.not_nil!,
-      username: uri.user, password: uri.password
+    hostname = uri.hostname
+    port = uri.port
+    if hostname.nil? || port.nil?
+      return nil
+    end
+    HTTP::Proxy::Client.new hostname, port, username: uri.user, password: uri.password
   rescue
     nil
   end

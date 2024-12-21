@@ -15,18 +15,18 @@ class DirEntry < Entry
   def initialize(@dir_path, @book)
     storage = Storage.default
     @path = @dir_path
-    @encoded_path = URI.encode @dir_path
+    @encoded_path = URI.encode_path @dir_path
     @title = File.basename @dir_path
-    @encoded_title = URI.encode @title
+    @encoded_title = URI.encode_path @title
 
-    unless File.readable? @dir_path
+    unless File::Info.readable? @dir_path
       @err_msg = "Directory #{@dir_path} is not readable."
       Logger.warn "#{@err_msg} Please make sure the " \
                   "file permission is configured correctly."
       return
     end
 
-    unless DirEntry.is_valid? @dir_path
+    unless DirEntry.valid? @dir_path
       @err_msg = "Directory #{@dir_path} is not valid directory entry."
       Logger.warn "#{@err_msg} Please make sure the " \
                   "directory has valid images."
@@ -51,9 +51,9 @@ class DirEntry < Entry
     end
     @id = id
 
-    @mtime = sorted_files.map do |file_path|
+    @mtime = sorted_files.max_of do |file_path|
       File.info(file_path).modification_time
-    end.max
+    end
     @pages = sorted_files.size
   end
 
@@ -78,7 +78,10 @@ class DirEntry < Entry
     sorted_files.each_with_index do |path, i|
       data = File.read(path).to_slice
       begin
-        data.not_nil!
+        if data.nil?
+          Logger.warn "Failed to read page #{i} of entry #{@dir_path}."
+          raise "Failed to read page #{i} of entry #{@dir_path}."
+        end
         size = ImageSize.get data
         sizes << {
           "width"  => size.width,
@@ -105,7 +108,7 @@ class DirEntry < Entry
     existence
   end
 
-  def sorted_files
+  def sorted_files : Array(String)
     cached_sorted_files = @sorted_files
     return cached_sorted_files if cached_sorted_files
     @sorted_files = DirEntry.sorted_image_files @dir_path
@@ -116,9 +119,9 @@ class DirEntry < Entry
     Dir.entries(dir_path)
       .reject(&.starts_with? ".")
       .map { |fn| File.join dir_path, fn }
-      .select { |fn| is_supported_image_file fn }
+      .select { |fn| supported_image_file? fn }
       .reject { |fn| File.directory? fn }
-      .select { |fn| File.readable? fn }
+      .select { |fn| File::Info.readable? fn }
   end
 
   def self.sorted_image_files(dir_path)
@@ -126,7 +129,7 @@ class DirEntry < Entry
       .sort { |a, b| compare_numerically a, b }
   end
 
-  def self.is_valid?(path : String) : Bool
+  def self.valid?(path : String) : Bool
     image_files(path).size > 0
   end
 end

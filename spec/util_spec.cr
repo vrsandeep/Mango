@@ -35,20 +35,20 @@ describe "compare_numerically" do
   end
 end
 
-describe "is_supported_file" do
+describe "supported_file?" do
   it "returns true when the filename has a supported extension" do
     filename = "manga.cbz"
-    is_supported_file(filename).should eq true
+    supported_file?(filename).should eq true
   end
 
   it "returns true when the filename does not have a supported extension" do
     filename = "info.json"
-    is_supported_file(filename).should eq false
+    supported_file?(filename).should eq false
   end
 
   it "is case insensitive" do
     filename = "manga.ZiP"
-    is_supported_file(filename).should eq true
+    supported_file?(filename).should eq true
   end
 end
 

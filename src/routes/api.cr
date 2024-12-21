@@ -176,9 +176,8 @@ struct APIRouter
         entry = title.get_entry eid
         raise "Entry ID `#{eid}` of `#{title.title}` not found" if entry.nil?
 
-        img = entry.get_thumbnail || entry.read_page 1
-        raise "Failed to get cover of `#{title.title}/#{entry.title}`" \
-           if img.nil?
+        img = entry.thumbnail || entry.read_page 1
+        raise "Failed to get cover of `#{title.title}/#{entry.title}`" if img.nil?
 
         e_tag = Digest::SHA1.hexdigest img.data
         if prev_e_tag == e_tag
@@ -618,10 +617,10 @@ struct APIRouter
         name = env.params.url["name"]
         entry = env.params.query["eid"]?
         if entry.nil?
-          title.set_display_name name
+          title.save_display_name name
         else
           eobj = title.get_entry entry
-          title.set_display_name eobj.not_nil!.title, name
+          title.save_display_name eobj.not_nil!.title, name
         end
       rescue e
         Logger.error e
@@ -671,7 +670,7 @@ struct APIRouter
       interval = (interval_raw.to_i? if interval_raw) || 5
       loop do
         socket.send({
-          "jobs"   => Queue.default.get_all.reverse,
+          "jobs"   => Queue.default.fetch_all.reverse,
           "paused" => Queue.default.paused?,
         }.to_json)
         sleep interval.seconds
@@ -696,7 +695,7 @@ struct APIRouter
     get "/api/admin/mangadex/queue" do |env|
       begin
         send_json env, {
-          "jobs"    => Queue.default.get_all.reverse,
+          "jobs"    => Queue.default.fetch_all.reverse,
           "paused"  => Queue.default.paused?,
           "success" => true,
         }.to_json
@@ -807,10 +806,10 @@ struct APIRouter
             end
 
             if entry_id.nil?
-              title.set_cover_url url
+              title.save_cover_url url
             else
               entry_name = title.get_entry(entry_id).not_nil!.title
-              title.set_cover_url entry_name, url
+              title.save_cover_url entry_name, url
             end
           else
             raise "Unkown upload target #{target}"

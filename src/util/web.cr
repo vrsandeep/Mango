@@ -1,6 +1,6 @@
 # Web related helper functions/macros
 
-def is_admin?(env) : Bool
+def admin_user?(env) : Bool
   is_admin = false
   if !Config.current.auth_proxy_header_name.empty? ||
      Config.current.disable_login
@@ -17,7 +17,7 @@ end
 
 macro layout(name)
   base_url = Config.current.base_url
-  is_admin = is_admin? env
+  is_admin = admin_user? env
   begin
     page = {{name}}
     render "src/views/#{{{name}}}.html.ecr", "src/views/layout.html.ecr"
@@ -32,7 +32,7 @@ end
 macro send_error_page(msg)
   message = {{msg}}
   base_url = Config.current.base_url
-  is_admin = is_admin? env
+  is_admin = admin_user? env
   page = "Error"
   html = render "src/views/message.html.ecr", "src/views/layout.html.ecr"
   send_file env, html.to_slice, "text/html"
@@ -74,10 +74,13 @@ end
 
 macro cors
   env.response.headers["Access-Control-Allow-Methods"] = "HEAD,GET,PUT,POST," \
-  "DELETE,OPTIONS"
+                                                         "DELETE,OPTIONS"
   env.response.headers["Access-Control-Allow-Headers"] = "X-Requested-With," \
-    "X-HTTP-Method-Override, Content-Type, Cache-Control, Accept," \
-    "Authorization"
+                                                         "X-HTTP-Method-Override, " \
+                                                         "Content-Type, " \
+                                                         "Cache-Control, " \
+                                                         "Accept, " \
+                                                         "Authorization"
   env.response.headers["Access-Control-Allow-Origin"] = "*"
 end
 
@@ -161,7 +164,7 @@ end
 
 module HTTP
   class Client
-    private def self.exec(uri : URI, tls : TLSContext = nil)
+    private def self.exec(uri : URI, tls : TLSContext = nil, &)
       previous_def uri, tls do |client, path|
         if client.tls? && env_is_true? "DISABLE_SSL_VERIFICATION"
           Logger.debug "Disabling SSL verification"

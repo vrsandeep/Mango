@@ -57,11 +57,11 @@ def register_mime_types
   end
 end
 
-def is_supported_file(path)
+def supported_file?(path) : Bool
   SUPPORTED_FILE_EXTNAMES.includes? File.extname(path).downcase
 end
 
-def is_supported_image_file(path)
+def supported_image_file?(path) : Bool
   SUPPORTED_IMG_TYPES.includes? MIME.from_filename? path
 end
 
@@ -122,13 +122,13 @@ def sort_titles(titles : Array(Title), opt : SortOptions, username : String)
     end
   else
     unless opt.method.auto?
-      Logger.warn "Unknown sorting method #{opt.not_nil!.method}. Using " \
+      Logger.warn "Unknown sorting method #{opt.method}. Using " \
                   "Auto instead"
     end
     ary = titles.sort { |a, b| compare_numerically a.sort_title, b.sort_title }
   end
 
-  ary.reverse! unless opt.not_nil!.ascend
+  ary.reverse! unless opt.ascend
 
   LRUCache.set generate_cache_entry cache_key, ary
   ary

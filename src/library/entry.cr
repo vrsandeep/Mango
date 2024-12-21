@@ -28,7 +28,6 @@ abstract class Entry
     end
     # Doing YAML::Any.new(ctx, node) here causes a weird error, so
     #   instead we are using a more hacky approach (see `node_has_key`).
-    # TODO: Use a more elegant approach
     if node_has_key node, "zip_path"
       ArchiveEntry.new ctx, node
     elsif node_has_key node, "dir_path"
@@ -100,7 +99,7 @@ abstract class Entry
   end
 
   def encoded_display_name
-    URI.encode display_name
+    URI.encode_path display_name
   end
 
   def cover_url
@@ -222,8 +221,8 @@ abstract class Entry
     img
   end
 
-  def get_thumbnail : Image?
-    Storage.default.get_thumbnail @id
+  def thumbnail : Image?
+    Storage.default.fetch_thumbnail @id
   end
 
   def date_added : Time
@@ -243,7 +242,7 @@ abstract class Entry
   # Hack to have abstract class methods
   # https://github.com/crystal-lang/crystal/issues/5956
   private module ClassMethods
-    abstract def is_valid?(path : String) : Bool
+    abstract def valid?(path : String) : Bool
   end
 
   macro inherited

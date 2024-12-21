@@ -39,7 +39,7 @@ class Title
     @id = id
     @contents_signature = Dir.contents_signature dir, cache
     @title = File.basename dir
-    @encoded_title = URI.encode @title
+    @encoded_title = URI.encode_path @title
     @title_ids = [] of String
     @entries = [] of Entry
     @mtime = File.info(dir).modification_time
@@ -53,13 +53,13 @@ class Title
           Library.default.title_hash[title.id] = title
           @title_ids << title.id
         end
-        if DirEntry.is_valid? path
+        if DirEntry.valid? path
           entry = DirEntry.new path, self
           @entries << entry if entry.pages > 0 || entry.err_msg
         end
         next
       end
-      if is_supported_file path
+      if supported_file? path
         entry = ArchiveEntry.new path, self
         @entries << entry if entry.pages > 0 || entry.err_msg
       end
@@ -146,7 +146,7 @@ class Title
       path = File.join dir, fn
       if File.directory? path
         unless remained_entry_paths.includes? path
-          if DirEntry.is_valid? path
+          if DirEntry.valid? path
             entry = DirEntry.new path, self
             if entry.pages > 0 || entry.err_msg
               @entries << entry
@@ -179,7 +179,7 @@ class Title
 
         next
       end
-      if is_supported_file path
+      if supported_file? path
         next if remained_entry_paths.includes? path
         entry = ArchiveEntry.new path, self
         if entry.pages > 0 || entry.err_msg
@@ -420,7 +420,7 @@ class Title
   end
 
   def encoded_display_name
-    URI.encode display_name
+    URI.encode_path display_name
   end
 
   def display_name(entry_name)
@@ -438,7 +438,7 @@ class Title
     dn
   end
 
-  def set_display_name(dn)
+  def save_display_name(dn)
     @cached_display_name = dn
     TitleInfo.new @dir do |info|
       info.display_name = dn
@@ -446,7 +446,7 @@ class Title
     end
   end
 
-  def set_display_name(entry_name : String, dn)
+  def save_display_name(entry_name : String, dn)
     TitleInfo.new @dir do |info|
       info.entry_display_name[entry_name] = dn
       @entry_display_name_cache = info.entry_display_name
@@ -473,7 +473,7 @@ class Title
     url
   end
 
-  def set_cover_url(url : String)
+  def save_cover_url(url : String)
     @cached_cover_url = url
     TitleInfo.new @dir do |info|
       info.cover_url = url
@@ -481,7 +481,7 @@ class Title
     end
   end
 
-  def set_cover_url(entry_name : String, url : String)
+  def save_cover_url(entry_name : String, url : String)
     TitleInfo.new @dir do |info|
       info.entry_cover_url[entry_name] = url
       @entry_cover_url_cache = info.entry_cover_url
@@ -648,7 +648,7 @@ class Title
   end
 
   # Equivalent to `@entries.map &. date_added`, but much more efficient
-  def get_date_added_for_all_entries
+  def fetch_date_added_for_all_entries
     da = {} of String => Time
     TitleInfo.new @dir do |info|
       da = info.date_added
@@ -668,7 +668,7 @@ class Title
   end
 
   def deep_entries_with_date_added
-    da_ary = get_date_added_for_all_entries
+    da_ary = fetch_date_added_for_all_entries
     zip = @entries.map_with_index do |e, i|
       {entry: e, date_added: da_ary[i]}
     end

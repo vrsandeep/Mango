@@ -18,7 +18,7 @@ static: uglify | libs
 	crystal build src/mango.cr --release --progress --static --error-trace
 
 libs:
-	shards install --production
+	shards install
 
 run:
 	crystal run src/mango.cr --error-trace

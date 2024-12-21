@@ -4,7 +4,7 @@
 
 require "big"
 
-def is_numeric(str)
+def numeric_string?(str) : Bool
   /^\d+/.match(str) != nil
 end
 
@@ -26,7 +26,7 @@ def compare_numerically(c, d)
   c.zip(d) do |a, b|
     return -1 if a.nil?
     return 1 if b.nil?
-    if is_numeric(a) && is_numeric(b)
+    if numeric_string?(a) && numeric_string?(b)
       compare = a.to_big_i <=> b.to_big_i
       return compare if compare != 0
     else

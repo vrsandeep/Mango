@@ -1,3 +1,4 @@
+require "db"
 require "sqlite3"
 require "crypto/bcrypt"
 require "uuid"
@@ -64,7 +65,7 @@ class Storage
                "#{{"username" => "admin", "password" => random_pw}}"
   end
 
-  private def get_db(&block : DB::Database ->)
+  private def get_db(& : DB::Database ->)
     if @db.nil?
       DB.open "sqlite3://#{@path}" do |db|
         db.exec "PRAGMA foreign_keys = 1"
@@ -412,7 +413,7 @@ class Storage
     end
   end
 
-  def get_thumbnail(id : String) : Image?
+  def fetch_thumbnail(id : String) : Image?
     img = nil
     MainFiber.run do
       get_db do |db|
