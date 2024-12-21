@@ -22,7 +22,7 @@ shards:
 
   db:
     git: https://github.com/crystal-lang/crystal-db.git
-    version: 0.10.1
+    version: 0.13.1
 
   duktape:
     git: https://github.com/jessedoyle/duktape.cr.git
@@ -57,8 +57,8 @@ shards:
     version: 3.2.0
 
   mg:
-    git: https://github.com/hkalexling/mg.git
-    version: 0.5.0+git.commit.697e46e27cde8c3969346e228e372db2455a6264
+    git: https://github.com/vrsandeep/mg.git
+    version: 0.6.0+git.commit.21420590cf13f1b2a9b0d23eaac4cc6f7dab11b8
 
   open_api:
     git: https://github.com/hkalexling/open_api.cr.git
@@ -74,7 +74,7 @@ shards:
 
   sqlite3:
     git: https://github.com/crystal-lang/crystal-sqlite3.git
-    version: 0.18.0
+    version: 0.21.0
 
   tallboy:
     git: https://github.com/epoch/tallboy.git
