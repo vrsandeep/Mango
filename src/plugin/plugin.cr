@@ -1,5 +1,5 @@
 require "duktape/runtime"
-require "myhtml"
+require "lexbor"
 require "xml"
 require "http/client"
 require "http/headers"
@@ -438,7 +438,7 @@ class Plugin
       html = env.require_string 0
       selector = env.require_string 1
 
-      myhtml = Myhtml::Parser.new html
+      myhtml = Lexbor::Parser.new html
       ary = myhtml.css(selector).map(&.to_html).to_a
 
       ary_idx = env.push_array
@@ -456,7 +456,7 @@ class Plugin
       html = env.require_string 0
 
       begin
-        parser = Myhtml::Parser.new html
+        parser = Lexbor::Parser.new html
         str = parser.body!.children.first.inner_text
 
         env.push_string str
@@ -474,7 +474,7 @@ class Plugin
       name = env.require_string 1
 
       begin
-        parser = Myhtml::Parser.new html
+        parser = Lexbor::Parser.new html
         attr = parser.body!.children.first.attribute_by name
         if attr.nil?
           raise "Attribute `#{name}` not found"

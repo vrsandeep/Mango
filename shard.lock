@@ -52,13 +52,13 @@ shards:
     git: https://github.com/hkalexling/koa.git
     version: 0.9.0
 
+  lexbor:
+    git: https://github.com/kostya/lexbor.git
+    version: 3.2.0
+
   mg:
     git: https://github.com/hkalexling/mg.git
     version: 0.5.0+git.commit.697e46e27cde8c3969346e228e372db2455a6264
-
-  myhtml:
-    git: https://github.com/kostya/myhtml.git
-    version: 1.5.8
 
   open_api:
     git: https://github.com/hkalexling/open_api.cr.git

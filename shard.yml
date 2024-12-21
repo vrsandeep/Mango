@@ -37,9 +37,9 @@ dependencies:
   duktape:
     github: jessedoyle/duktape.cr
     version: 1.1.0
-  myhtml:
-    github: kostya/myhtml
-    version: 1.5.8
+  lexbor:
+    github: kostya/lexbor
+    version: 3.2.0
   http_proxy:
     github: mamantoha/http_proxy
     version: 0.12.1

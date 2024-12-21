@@ -1,6 +1,6 @@
 FROM arm64v8/ubuntu:24.04
 
-RUN apt-get update && apt-get install -y wget git make llvm-8 llvm-8-dev g++ libsqlite3-dev libyaml-dev libgc-dev libssl-dev libcrypto++-dev libevent-dev libgmp-dev zlib1g-dev libpcre++-dev pkg-config libarchive-dev libxml2-dev libacl1-dev nettle-dev liblzo2-dev liblzma-dev libbz2-dev libjpeg-turbo8-dev libpng-dev libtiff-dev
+RUN apt-get update && apt-get install -y wget git make llvm-8 llvm-8-dev g++ libsqlite3-dev libyaml-dev libgc-dev libssl-dev libcrypto++-dev libevent-dev libgmp-dev zlib1g-dev libpcre++-dev pkg-config libarchive-dev libxml2-dev libacl1-dev nettle-dev liblzo2-dev liblzma-dev libbz2-dev libjpeg-turbo8-dev libpng-dev libtiff-dev cmake
 
 RUN git clone https://github.com/crystal-lang/crystal && cd crystal && git checkout 1.14.0 && make deps && cd ..
 RUN git clone https://github.com/kostya/myhtml && cd myhtml/src/ext && git checkout v1.5.8 && make && cd ..
