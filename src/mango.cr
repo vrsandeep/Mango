@@ -65,8 +65,10 @@ class CLI < Clim
 
       spawn do
         begin
+          Logger.debug "Starting Mango Server..."
           Server.new.start
         rescue e
+          Logger.error "An error occurred while starting the server."
           Logger.fatal e
           Process.exit 1
         end
