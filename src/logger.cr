@@ -3,8 +3,9 @@ require "colorize"
 
 class Logger
   LEVELS       = ["debug", "error", "fatal", "info", "warn"]
-  SEVERITY_IDS = [0, 4, 5, 2, 3]
-  COLORS       = [:light_cyan, :light_red, :red, :light_yellow, :light_magenta]
+  SEVERITY_IDS = [Log::Severity::Debug, Log::Severity::Error,
+                  Log::Severity::Fatal, Log::Severity::Info, Log::Severity::Warn]
+  COLORS = [:light_cyan, :light_red, :red, :light_yellow, :light_magenta]
 
   getter raw_log = Log.for ""
 
@@ -52,7 +53,7 @@ class Logger
         return Log::Severity::None
         {% for lvl, i in LEVELS %}
           when {{lvl}}
-          return Log::Severity.new SEVERITY_IDS[{{i}}]
+          return SEVERITY_IDS[{{i}}]
         {% end %}
       else
         raise "Unknown log level #{level}"
@@ -66,13 +67,35 @@ class Logger
       Log::Metadata.empty, nil
   end
 
+  def log(msg : Exception, severity)
+    @backend.write(Log::Entry.new "", severity, "",
+      Log::Metadata.empty, msg)
+    if exception_message = msg.message
+      @backend.write(Log::Entry.new "", severity, exception_message,
+        Log::Metadata.empty, nil)
+    end
+    if message_backtrace = msg.backtrace.try &.join("\n")
+      @backend.write(Log::Entry.new "", severity, message_backtrace,
+        Log::Metadata.empty, nil)
+    end
+  end
+
+  def log(msg : String, severity)
+    @backend.write Log::Entry.new "", severity, msg,
+      Log::Metadata.empty, nil
+  end
+
+  def log(msg, severity)
+    log msg.to_s, @@severity
+  end
+
   def self.log(msg)
     default.log msg
   end
 
   {% for lvl in LEVELS %}
     def {{lvl.id}}(msg)
-      raw_log.{{lvl.id}} { msg }
+      log(msg, Logger.get_severity("{{lvl.id}}"))
     end
     def self.{{lvl.id}}(msg)
       default.not_nil!.{{lvl.id}} msg

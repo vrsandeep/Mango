@@ -15,7 +15,9 @@ const component = () => {
 
           let pid = localStorage.getItem('plugin');
           if (!pid || !this.plugins.find((p) => p.id === pid)) {
-            pid = this.plugins[0].id;
+            if (this.plugins.length > 0) {
+              pid = this.plugins[0].id;
+            }
           }
 
           this.pid = pid;
