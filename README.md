@@ -10,7 +10,7 @@ This repo will try to bring in some updates to keep the project alive for a litt
 
 # Mango
 
-[![Patreon](https://img.shields.io/badge/support-patreon-brightgreen?link=https://www.patreon.com/hkalexling)](https://www.patreon.com/hkalexling) ![Build](https://github.com/hkalexling/Mango/workflows/Build/badge.svg) [![Gitter](https://badges.gitter.im/mango-cr/mango.svg)](https://gitter.im/mango-cr/mango?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Discord](https://img.shields.io/discord/855633663425118228?label=discord)](http://discord.com/invite/ezKtacCp9Q)
+[![Discord](https://img.shields.io/discord/855633663425118228?label=discord)](http://discord.com/invite/ezKtacCp9Q)
 
 Mango is a self-hosted manga server and reader. Its features include
 
@@ -21,7 +21,7 @@ Mango is a self-hosted manga server and reader. Its features include
 - Supports nested folders in library
 - Automatically stores reading progress
 - Thumbnail generation
-- Supports [plugins](https://github.com/hkalexling/mango-plugins) to download from third-party sites
+- Supports [plugins](https://github.com/vrsandeep/mango-plugins) to download from third-party sites
 - The web reader is responsive and works well on mobile, so there is no need for a mobile app
 - All the static files are embedded in the binary, so the deployment process is easy and painless
 
@@ -31,7 +31,7 @@ Please check the [Wiki](https://github.com/hkalexling/Mango/wiki) for more infor
 
 ### Pre-built Binary
 
-Simply download the pre-built binary file `mango` for the latest [release](https://github.com/hkalexling/Mango/releases). All the dependencies are statically linked, and it should work with most Linux systems on amd64.
+Simply download the pre-built binary file `mango` for the latest [release](https://github.com/vrsandeep/Mango/releases). All the dependencies are statically linked, and it should work with most Linux systems on amd64.
 
 ### Docker
 
@@ -56,7 +56,7 @@ The official docker images are available on [Dockerhub](https://hub.docker.com/r
 
 ### Local Development:
 
-1. If you are running MacOS, make sure to specify platform `--platform linux/amd64` to docker run
+1. If you are running MacOS, make sure to specify platform `--platform linux/amd64` to `docker run`
 ```shell
 docker run --platform linux/amd64 --rm -ti -v $PWD:/mango crystallang/crystal:1.14.0-alpine sh
 ```
@@ -68,7 +68,7 @@ docker run --platform linux/amd64 --rm -ti -v $PWD:/mango crystallang/crystal:1.
 ### CLI
 
 ```
-  Mango - Manga Server and Web Reader. Version 0.27.1
+  Mango - Manga Server and Web Reader.
 
   Usage:
 
@@ -177,21 +177,22 @@ Please check the [development guideline](https://github.com/hkalexling/Mango/wik
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/hkalexling/"><img src="https://avatars1.githubusercontent.com/u/7845831?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Ling</b></sub></a><br /><a href="https://github.com/hkalexling/Mango/commits?author=hkalexling" title="Code">💻</a> <a href="https://github.com/hkalexling/Mango/commits?author=hkalexling" title="Documentation">📖</a> <a href="#infra-hkalexling" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
-    <td align="center"><a href="https://github.com/jaredlt"><img src="https://avatars1.githubusercontent.com/u/8590311?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jaredlt</b></sub></a><br /><a href="https://github.com/hkalexling/Mango/commits?author=jaredlt" title="Code">💻</a> <a href="#ideas-jaredlt" title="Ideas, Planning, & Feedback">🤔</a> <a href="#design-jaredlt" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/vrsandeep/"><img src="https://avatars1.githubusercontent.com/u/7845831?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Ling</b></sub></a><br /><a href="https://github.com/vrsandeep/Mango/commits?author=hkalexling" title="Code">💻</a> <a href="https://github.com/vrsandeep/Mango/commits?author=hkalexling" title="Documentation">📖</a> <a href="#infra-hkalexling" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="https://github.com/jaredlt"><img src="https://avatars1.githubusercontent.com/u/8590311?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jaredlt</b></sub></a><br /><a href="https://github.com/vrsandeep/Mango/commits?author=jaredlt" title="Code">💻</a> <a href="#ideas-jaredlt" title="Ideas, Planning, & Feedback">🤔</a> <a href="#design-jaredlt" title="Design">🎨</a></td>
     <td align="center"><a href="https://windisco.com/"><img src="https://avatars1.githubusercontent.com/u/4946624?v=4?s=100" width="100px;" alt=""/><br /><sub><b>ココロ</b></sub></a><br /><a href="#infra-shincurry" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://catgirlsin.space/"><img src="https://avatars0.githubusercontent.com/u/13433513?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Valentijn</b></sub></a><br /><a href="#infra-noirscape" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
-    <td align="center"><a href="https://github.com/flying-sausages"><img src="https://avatars1.githubusercontent.com/u/23618693?v=4?s=100" width="100px;" alt=""/><br /><sub><b>flying-sausages</b></sub></a><br /><a href="https://github.com/hkalexling/Mango/commits?author=flying-sausages" title="Documentation">📖</a> <a href="#ideas-flying-sausages" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/flying-sausages"><img src="https://avatars1.githubusercontent.com/u/23618693?v=4?s=100" width="100px;" alt=""/><br /><sub><b>flying-sausages</b></sub></a><br /><a href="https://github.com/vrsandeep/Mango/commits?author=flying-sausages" title="Documentation">📖</a> <a href="#ideas-flying-sausages" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/XavierSchiller"><img src="https://avatars1.githubusercontent.com/u/22575255?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Xavier</b></sub></a><br /><a href="#infra-XavierSchiller" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://github.com/WROIATE"><img src="https://avatars3.githubusercontent.com/u/44677306?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jarao</b></sub></a><br /><a href="#infra-WROIATE" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/Leeingnyo"><img src="https://avatars0.githubusercontent.com/u/6760150?v=4?s=100" width="100px;" alt=""/><br /><sub><b>이인용</b></sub></a><br /><a href="https://github.com/hkalexling/Mango/commits?author=Leeingnyo" title="Code">💻</a></td>
-    <td align="center"><a href="http://h45h74x.eu.org"><img src="https://avatars1.githubusercontent.com/u/27204033?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Simon</b></sub></a><br /><a href="https://github.com/hkalexling/Mango/commits?author=h45h74x" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Leeingnyo"><img src="https://avatars0.githubusercontent.com/u/6760150?v=4?s=100" width="100px;" alt=""/><br /><sub><b>이인용</b></sub></a><br /><a href="https://github.com/vrsandeep/Mango/commits?author=Leeingnyo" title="Code">💻</a></td>
+    <td align="center"><a href="http://h45h74x.eu.org"><img src="https://avatars1.githubusercontent.com/u/27204033?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Simon</b></sub></a><br /><a href="https://github.com/vrsandeep/Mango/commits?author=h45h74x" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/davidkna"><img src="https://avatars.githubusercontent.com/u/835177?v=4?s=100" width="100px;" alt=""/><br /><sub><b>David Knaack</b></sub></a><br /><a href="#infra-davidkna" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://lncn.dev"><img src="https://avatars.githubusercontent.com/u/41193328?v=4?s=100" width="100px;" alt=""/><br /><sub><b>i use arch btw</b></sub></a><br /><a href="#infra-lincolnthedev" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
-    <td align="center"><a href="https://github.com/BradleyDS2"><img src="https://avatars.githubusercontent.com/u/2174921?v=4?s=100" width="100px;" alt=""/><br /><sub><b>BradleyDS2</b></sub></a><br /><a href="https://github.com/hkalexling/Mango/commits?author=BradleyDS2" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/nduja"><img src="https://avatars.githubusercontent.com/u/69299134?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Robbo</b></sub></a><br /><a href="https://github.com/hkalexling/Mango/commits?author=nduja" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/BradleyDS2"><img src="https://avatars.githubusercontent.com/u/2174921?v=4?s=100" width="100px;" alt=""/><br /><sub><b>BradleyDS2</b></sub></a><br /><a href="https://github.com/vrsandeep/Mango/commits?author=BradleyDS2" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/nduja"><img src="https://avatars.githubusercontent.com/u/69299134?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Robbo</b></sub></a><br /><a href="https://github.com/vrsandeep/Mango/commits?author=nduja" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/vrsandeep"><img src="https://avatars.githubusercontent.com/u/69299134?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Robbo</b></sub></a><br /><a href="https://github.com/vrsandeep/Mango/commits?author=vrsandeep" title="Code">💻</a></td>
   </tr>
 </table>
 

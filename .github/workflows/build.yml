@@ -1,6 +1,8 @@
 name: Build
 
 on:
+  push:
+    branches: [master]
   pull_request:
     types: ['opened', 'reopened', 'synchronize', 'ready_for_review']
 
@@ -26,6 +28,8 @@ jobs:
       with:
         name: mango
         path: mango
+    - name: build arm32v7 object file
+      run: make arm32v7 || make arm32v7
     - name: build arm64v8 object file
       run: make arm64v8 || make arm64v8
     - name: Upload object files
