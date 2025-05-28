@@ -214,7 +214,7 @@ class Plugin
   def assert_manga_type(obj : JSON::Any)
     obj["id"].as_s && obj["title"].as_s
   rescue e
-    raise Error.new "Missing required fields in the Manga type"
+    raise Error.new "Missing required fields in the Manga type #{obj}"
   end
 
   def assert_chapter_type(obj : JSON::Any)

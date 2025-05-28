@@ -33,7 +33,8 @@ class DirEntry < Entry
       return
     end
 
-    size_sum = 0
+    # https://github.com/getmango/Mango/issues/339#issuecomment-1369392511
+    size_sum = 0_i64
     sorted_files.each do |file_path|
       size_sum += File.size file_path
     end
