@@ -18,7 +18,7 @@ abstract class Entry
   def initialize(
     @id, @title, @book, @path,
     @size, @pages, @mtime,
-    @encoded_path, @encoded_title, @err_msg
+    @encoded_path, @encoded_title, @err_msg,
   )
   end
 
