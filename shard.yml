@@ -39,7 +39,7 @@ dependencies:
     version: 1.1.0
   lexbor:
     github: kostya/lexbor
-    version: 3.2.0
+    version: 3.3.2
   http_proxy:
     github: mamantoha/http_proxy
     version: 0.13.0
