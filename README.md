@@ -58,7 +58,7 @@ The official docker images are available on [Dockerhub](https://hub.docker.com/r
 
 1. If you are running MacOS, make sure to specify platform `--platform linux/amd64` to `docker run`
 ```shell
-docker run --platform linux/amd64 --rm -ti -v $PWD:/mango crystallang/crystal:1.14.0-alpine sh
+docker run --platform linux/amd64 --rm -ti -v $PWD:/mango crystallang/crystal:1.16.3-alpine sh
 ```
 2. `cd mango`  inside the container.
 3. Checkout [build.yml](./.github/workflows/build.yml) for complete steps.
