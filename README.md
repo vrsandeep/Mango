@@ -192,7 +192,7 @@ Please check the [development guideline](https://github.com/hkalexling/Mango/wik
     <td align="center"><a href="https://lncn.dev"><img src="https://avatars.githubusercontent.com/u/41193328?v=4?s=100" width="100px;" alt=""/><br /><sub><b>i use arch btw</b></sub></a><br /><a href="#infra-lincolnthedev" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://github.com/BradleyDS2"><img src="https://avatars.githubusercontent.com/u/2174921?v=4?s=100" width="100px;" alt=""/><br /><sub><b>BradleyDS2</b></sub></a><br /><a href="https://github.com/vrsandeep/Mango/commits?author=BradleyDS2" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/nduja"><img src="https://avatars.githubusercontent.com/u/69299134?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Robbo</b></sub></a><br /><a href="https://github.com/vrsandeep/Mango/commits?author=nduja" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/vrsandeep"><img src="https://avatars.githubusercontent.com/u/69299134?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Robbo</b></sub></a><br /><a href="https://github.com/vrsandeep/Mango/commits?author=vrsandeep" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/vrsandeep"><img src="https://avatars.githubusercontent.com/u/11724044?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sandeep Rao</b></sub></a><br /><a href="https://github.com/vrsandeep/Mango/commits?author=vrsandeep" title="Code">💻</a></td>
   </tr>
 </table>
 
