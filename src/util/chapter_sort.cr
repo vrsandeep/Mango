@@ -55,7 +55,7 @@ class ChapterSorter
   @sorted_keys = [] of String
 
   def has_key_with_variation?(
-    key : String, available_keys : Array(String)
+    key : String, available_keys : Array(String),
   ) : String | Nil
     # using available_keys {} of String => KeyRange, check if the key
     # exists as a variant of an existing key in available_keys.
@@ -112,7 +112,7 @@ class ChapterSorter
   end
 
   def merge_repeated_key_ranges(
-    top_keys : Array(String), key_ranges : Hash(String, KeyRange)
+    top_keys : Array(String), key_ranges : Hash(String, KeyRange),
   ) : Nil
     # For keys not belonging to top_keys, check if the key is a
     # variant of one of the top keys. If it is, merge the key ranges

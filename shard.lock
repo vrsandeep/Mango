@@ -10,7 +10,7 @@ shards:
 
   backtracer:
     git: https://github.com/sija/backtracer.cr.git
-    version: 1.2.2
+    version: 1.2.4
 
   baked_file_system:
     git: https://github.com/schovi/baked_file_system.git
@@ -34,11 +34,11 @@ shards:
 
   http_proxy:
     git: https://github.com/mamantoha/http_proxy.git
-    version: 0.12.1
+    version: 0.13.0
 
   image_size:
-    git: https://github.com/akkoyk/image_size.cr.git
-    version: 0.5.0
+    git: https://github.com/n-pn/image_size.cr.git
+    version: 0.5.1+git.commit.de5542313b6ad5f8769f30936eb7de68829c87b1
 
   kemal:
     git: https://github.com/kemalcr/kemal.git
@@ -54,7 +54,7 @@ shards:
 
   lexbor:
     git: https://github.com/kostya/lexbor.git
-    version: 3.2.0
+    version: 3.3.2
 
   mg:
     git: https://github.com/vrsandeep/mg.git
@@ -69,8 +69,8 @@ shards:
     version: 0.4.1
 
   sanitize:
-    git: https://github.com/hkalexling/sanitize.git
-    version: 0.1.0+git.commit.e09520e972d0d9b70b71bb003e6831f7c2c59dce
+    git: https://github.com/straight-shoota/sanitize.git
+    version: 0.1.0+git.commit.c17d933fed22c6d3d615cca91a895166414389af
 
   sqlite3:
     git: https://github.com/crystal-lang/crystal-sqlite3.git

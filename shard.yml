@@ -39,13 +39,12 @@ dependencies:
     version: 1.1.0
   lexbor:
     github: kostya/lexbor
-    version: 3.2.0
+    version: 3.3.2
   http_proxy:
     github: mamantoha/http_proxy
-    version: 0.12.1
+    version: 0.13.0
   image_size:
-   github: akkoyk/image_size.cr
-   version: 0.5.0
+   github: n-pn/image_size.cr
   koa:
     github: hkalexling/koa
     version: 0.9.0
@@ -55,4 +54,4 @@ dependencies:
   mg:
     github: vrsandeep/mg
   sanitize:
-    github: hkalexling/sanitize
+    github: straight-shoota/sanitize
