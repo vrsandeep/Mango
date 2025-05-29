@@ -8,6 +8,7 @@ const component = () => {
     themeSetting: '',
 
     init() {
+      this.generating = true;
       this.getProgress();
       setInterval(() => {
         this.getProgress();
@@ -47,6 +48,7 @@ const component = () => {
       });
     },
     getProgress() {
+      if (!this.generating) return;
       $.get(`${base_url}api/admin/thumbnail_progress`).then((data) => {
         this.progress = data.progress;
         this.generating = data.progress > 0;
