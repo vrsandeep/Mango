@@ -1,6 +1,0 @@
-from_owner:
-  - vrsandeep
-required_labels:
-  - autoapprove
-apply_labels:
-  - autoapproved
