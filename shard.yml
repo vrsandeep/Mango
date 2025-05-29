@@ -44,7 +44,7 @@ dependencies:
     github: mamantoha/http_proxy
     version: 0.13.0
   image_size:
-   github: by6756/image_size.cr
+   github: n-pn/image_size.cr
   koa:
     github: hkalexling/koa
     version: 0.9.0
