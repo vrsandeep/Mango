@@ -1,6 +1,6 @@
 <div class="uk-padding">
     <button id="prev-btn" class="uk-button uk-button-default" <% if current_page==1 %>disabled="" <% end %>
-         @click="changePage(<%= current_page - 1 %>)">Previous page</button>
+         on-click="changePage(<%= current_page - 1 %>)">Previous page</button>
     <button id="next-btn" class="uk-button uk-button-default" <% if current_page==total_pages %>disabled="" <% end %>
-        @click="changePage(<%= current_page + 1 %>)">Next page</button>
+        on-click="changePage(<%= current_page + 1 %>)">Next page</button>
 </div>
