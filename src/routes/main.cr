@@ -39,19 +39,20 @@ struct MainRouter
     get "/library" do |env|
       begin
         username = get_username env
-        page_size = 100
-        current_page = env.params.url["page"]?.try &.to_i || 1
+        page_size = 3
+        current_page = env.params.query["page"]?.try &.to_i || 1
 
         sort_opt = SortOptions.from_info_json Library.default.dir, username
         get_and_save_sort_opt Library.default.dir
 
         titles = Library.default.sorted_titles username, sort_opt
-        title_size = titles.size
+        Logger.debug "Total titles: #{titles.size}"
 
-        total_pages = (title_size.to_f / page_size).ceil
-        if titles.size != 0 && current_page > 0 && current_page <= total_pages
+        total_pages = (titles.size / page_size).ceil
+        if titles.size != 0 && current_page <= total_pages
           offset = (current_page - 1) * page_size
           titles = titles[page_size * offset, page_size]
+          Logger.debug "Total offset: #{offset}, page size: #{page_size}, page_size*offset: #{(page_size * offset)}"
         end
         percentage = titles.map &.load_percentage username
 
