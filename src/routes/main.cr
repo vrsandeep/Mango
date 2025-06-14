@@ -48,11 +48,11 @@ struct MainRouter
         titles = Library.default.sorted_titles username, sort_opt
         Logger.debug "Total titles: #{titles.size}"
 
-        total_pages = (titles.size / page_size).ceil
+        total_pages = (titles.size / page_size).ceil.to_i
         if titles.size != 0 && current_page <= total_pages
           offset = (current_page - 1) * page_size
-          titles = titles[page_size * offset, page_size]
-          Logger.debug "Total offset: #{offset}, page size: #{page_size}, page_size*offset: #{(page_size * offset)}"
+          titles = titles[offset, page_size]
+          Logger.debug "Total offset: #{offset}, page size: #{page_size}"
         end
         percentage = titles.map &.load_percentage username
 

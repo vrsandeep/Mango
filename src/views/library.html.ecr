@@ -23,9 +23,7 @@
     <%= render_component "card" %>
   <% end %>
 </div>
-<% if titles.size > page_size %>
 <%= render_component "pagination" %>
-<% end %>
 
 <% content_for "script" do %>
   <%= render_component "dots" %>
