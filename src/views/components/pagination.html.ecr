@@ -1,44 +1,13 @@
 <div class="uk-padding">
 
-     <nav aria-label="Pagination">
+    <nav aria-label="Pagination">
         <ul class="uk-pagination uk-flex-center uk-text-large" uk-margin>
-            <li <% if current_page == 1 %> class="uk-disabled" <% end %>
-                @click="changePage(<%=current_page-1%>)"><span uk-pagination-previous></span></li>
+            <li <% if current_page==1 %> class="uk-disabled" <% end %>
+                    @click="changePage(<%=current_page-1%>)"><span uk-pagination-previous>Previous</span></li>
 
-            <% if total_pages < 10 %>
-                <% [1..total_pages].each do |page| %>
-                    <% if page == current_page %>
-                    <li class="uk-active"><span aria-current="page"><%= page %></span></li>
-                    <% else %>
-                        <li><div on-click="changePage(<%= page %>)"><%= page %></div></li>
-                    <% end %>
-                <% end %>
 
-            <% else %>
-                <% if current_page > 4 %>
-                    <% [1..3].each do |page| %>
-                        <li><div on-click="changePage(<%= page %>)"><%= page %></div></li>
-                    <% end %>
-                    <li class="uk-disabled"><span>…</span></li>
-                <% end %>
-                <% [current_page-1..current_page+1].each do |page| %>
-                    <% if page < total_pages + 1 %>
-                        <% if page == current_page %>
-                            <li class="uk-active"><span aria-current="page"><%= page %></span></li>
-                        <% else %>
-                            <li><div on-click="changePage(<%= page %>)"><%= page %></div></li>
-                        <% end %>
-                    <% end %>
-                <% end %>
-                <% if current_page < total_pages - 3 %>
-                    <li class="uk-disabled"><span>…</span></li>
-                <% end %>
-                <% if current_page + 1 != total_pages %>
-                    <li><div on-click="changePage(<%= total_pages %>)"><%= total_pages %></div></li>
-                <% end %>
-            <% end %>
-            <li <% if current_page == total_pages %> class="uk-disabled" <% end %>
-                @click="changePage(<%=current_page+1%>)"><span uk-pagination-next></span></li>
+            <li <% if current_page==total_pages %> class="uk-disabled" <% end %>
+                    @click="changePage(<%=current_page+1%>)"><span uk-pagination-next>Next</span></li>
         </ul>
     </nav>
 </div>
