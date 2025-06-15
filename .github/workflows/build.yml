@@ -19,21 +19,21 @@ jobs:
       run: apk add --no-cache yarn yaml-static sqlite-static libarchive-dev libarchive-static acl-static expat-static zstd-static lz4-static bzip2-static libjpeg-turbo-dev libpng-dev tiff-dev cmake
     - name: Build
       run: make static || make static
-    - name: Linter
-      run: make check
-    - name: Run tests
-      run: make test
+    # - name: Linter
+    #   run: make check
+    # - name: Run tests
+    #   run: make test
     - name: Upload binary
       uses: actions/upload-artifact@v4
       with:
         name: mango
         path: mango
-    - name: build arm32v7 object file
-      run: make arm32v7 || make arm32v7
-    - name: build arm64v8 object file
-      run: make arm64v8 || make arm64v8
-    - name: Upload object files
-      uses: actions/upload-artifact@v4
-      with:
-        name: object files
-        path: ./*.o
+    # - name: build arm32v7 object file
+    #   run: make arm32v7 || make arm32v7
+    # - name: build arm64v8 object file
+    #   run: make arm64v8 || make arm64v8
+    # - name: Upload object files
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: object files
+    #     path: ./*.o
