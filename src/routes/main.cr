@@ -73,9 +73,13 @@ struct MainRouter
 
         sorted_titles = title.sorted_titles username, sort_opt
         entries = title.sorted_entries username, sort_opt
+        total_pages = (entries.size / page_size).ceil.to_i
         if entries.size != 0 && current_page > 0
           offset = (current_page - 1) * page_size
-          sorted_titles = sorted_titles[offset, page_size]
+          Logger.debug "Current page: #{current_page}, offset: #{offset}, page size: #{page_size}"
+          Logger.debug "sorted titles: #{sorted_titles.size}, entries: #{entries.size}"
+          Logger.debug "sorted_titles: #{sorted_titles.inspect}"
+          # sorted_titles = sorted_titles[offset, page_size]
           entries = entries[offset, page_size]
         end
 
