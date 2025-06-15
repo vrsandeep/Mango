@@ -1,6 +1,8 @@
 <div class="uk-padding uk-text-center">
-    <button id="prev-btn" class="uk-button uk-button-default" <% if current_page==1 %>disabled="" <% end %>
-            onclick="changePage(<%= current_page - 1 %>)">Previous page</button>
-    <button id="next-btn" class="uk-button uk-button-default" <% if current_page==total_pages %>disabled="" <% end %>
-            onclick="changePage(<%= current_page + 1 %>)">Next page</button>
+    <% if current_page!=1 %>
+    <button id="prev-btn" class="uk-button uk-button-default" onclick="changePage(<%= current_page - 1 %>)">Previous page</button>
+    <% end %>
+    <% if current_page!=total_pages %>
+    <button id="next-btn" class="uk-button uk-button-default" onclick="changePage(<%= current_page + 1 %>)">Next page</button>
+    <% end %>
 </div>

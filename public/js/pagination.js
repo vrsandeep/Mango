@@ -3,8 +3,10 @@ const changePage = (page) => {
   if (page < 1) {
     page = 1;
   }
-  const newURL = `${url}?${$.param({
-    page,
-  })}`;
+
+  // preserve existing query parameters
+  const queryParams = new URLSearchParams(window.location.search);
+  queryParams.set('page', page);
+  const newURL = `${url}?${queryParams.toString()}`;
   window.location.href = newURL;
 };

@@ -6,10 +6,11 @@ $(() => {
     const dir = ary[1];
 
     const url = `${location.protocol}//${location.host}${location.pathname}`;
-    const newURL = `${url}?${$.param({
-      sort: by,
-      ascend: dir === 'up' ? 1 : 0,
-    })}`;
+
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.set('sort', by);
+    queryParams.set('ascend', dir === 'up' ? 1 : 0);
+    const newURL = `${url}?${queryParams.toString()}`;
     window.location.href = newURL;
   });
 });

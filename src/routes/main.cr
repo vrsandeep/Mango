@@ -39,14 +39,14 @@ struct MainRouter
     get "/library" do |env|
       begin
         username = get_username env
-        page_size = 50
+        page_size = 100
         current_page = env.params.query["page"]?.try &.to_i || 1
 
         sort_opt = SortOptions.from_info_json Library.default.dir, username
         get_and_save_sort_opt Library.default.dir
 
         titles = Library.default.sorted_titles username, sort_opt
-
+        total_titles = titles.size
         total_pages = (titles.size / page_size).ceil.to_i
         if titles.size != 0 && current_page <= total_pages
           offset = (current_page - 1) * page_size
@@ -65,12 +65,20 @@ struct MainRouter
       begin
         title = (Library.default.get_title env.params.url["title"]).not_nil!
         username = get_username env
+        page_size = 100
+        current_page = env.params.query["page"]?.try &.to_i || 1
 
         sort_opt = SortOptions.from_info_json title.dir, username
         get_and_save_sort_opt title.dir
 
         sorted_titles = title.sorted_titles username, sort_opt
         entries = title.sorted_entries username, sort_opt
+        total_pages = (entries.size / page_size).ceil.to_i
+        if entries.size != 0 && current_page > 0
+          offset = (current_page - 1) * page_size
+          entries = entries[offset, page_size]
+        end
+
         percentage = title.load_percentage_for_all_entries username, sort_opt
         title_percentage = title.titles.map &.load_percentage username
         title_percentage_map = {} of String => Float64
