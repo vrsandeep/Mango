@@ -8,11 +8,6 @@ $(() => {
     const url = `${location.protocol}//${location.host}${location.pathname}`;
 
     const queryParams = new URLSearchParams(window.location.search);
-    queryParams.forEach((value, key) => {
-      if (key !== 'page') {
-        url.searchParams.set(key, value);
-      }
-    });
     queryParams.set('sort', by);
     queryParams.set('ascend', dir === 'up' ? 1 : 0);
     const newURL = `${url}?${queryParams.toString()}`;
