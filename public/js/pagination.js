@@ -29,6 +29,6 @@ $(() => {
   // on page load, set the current page size selected attribute based on the query parameter page_size
   // otherwise default to 1000
   const queryParams = new URLSearchParams(window.location.search);
-  const pageSize = queryParams.get('page_size') || 3;
+  const pageSize = queryParams.get('page_size') || 1000;
   $('#page-size-select').val(pageSize);
 });

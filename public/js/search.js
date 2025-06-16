@@ -1,13 +1,14 @@
 $(function () {
+  /*// to perform local search:
   let filter = [];
   let result = [];
   $('.uk-card-title').each(function () {
     filter.push($(this).text());
   });
-  $('.uk-search-input').keyup(function () {
+  $('.uk-search-input').keydown(function () {
     let input = $('.uk-search-input').val();
-    let regex = new RegExp(input, 'i');
 
+    let regex = new RegExp(input, 'i');
     if (input === '') {
       $('.item').each(function () {
         $(this).removeAttr('hidden');
@@ -24,5 +25,18 @@ $(function () {
         }
       });
     }
+  });*/
+
+  // set the search input value from the query parameter
+  const queryParams = new URLSearchParams(window.location.search);
+  const searchValue = queryParams.get('search') || '';
+  $('.uk-search-input').val(searchValue);
+  $('.uk-search-input').keydown(function () {
+    let input = $('.uk-search-input').val();
+    const url = `${location.protocol}//${location.host}${location.pathname}`;
+    const queryParams = new URLSearchParams(window.location.search);
+    queryParams.set('search', input);
+    const newURL = `${url}?${queryParams.toString()}`;
+    window.location.href = newURL;
   });
 });
