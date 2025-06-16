@@ -42,6 +42,8 @@ Simply download the pre-built binary file `mango` for the latest [release](https
 5. Run `docker-compose up`. This should build the docker image and start the container with Mango running inside
 6. Head over to `localhost:9000` (or a different port if you changed it) to log in
 
+If you are on MacOS, run `docker buildx build --platform=linux/amd64 -t mango .` to build the image locally.
+
 ### Docker (via Dockerhub)
 
 The official docker images are available on [Dockerhub](https://hub.docker.com/r/hkalexling/mango).
