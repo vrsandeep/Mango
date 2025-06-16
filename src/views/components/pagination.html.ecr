@@ -1,8 +1,23 @@
-<div class="uk-padding uk-text-center">
+<div class="uk-grid-small uk-grid uk-padding" uk-grid="">
+  <div class="uk-text-right uk-first-column uk-width-1-2@s">
     <% if current_page!=1 %>
     <button id="prev-btn" class="uk-button uk-button-default" onclick="changePage(<%= current_page - 1 %>)">Previous page</button>
     <% end %>
     <% if current_page!=total_pages %>
     <button id="next-btn" class="uk-button uk-button-default" onclick="changePage(<%= current_page + 1 %>)">Next page</button>
     <% end %>
+  </div>
+  <div class="uk-width-1-2@s">
+    <div class="uk-form-horizontal">
+      <div class="uk-width-1-5@s">
+          <select class="uk-select" id="page-size-select" onchange="changePageSize(this.value)">
+              <option value="25"> 25</option>
+              <option value="50"> 50</option>
+              <option value="100">100</option>
+              <option value="500">500</option>
+              <option value="1000">1000</option>
+          </select>
+      </div>
+    </div>
+  </div>
 </div>
