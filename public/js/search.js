@@ -5,7 +5,7 @@ $(function () {
   $('.uk-card-title').each(function () {
     filter.push($(this).text());
   });
-  $('.uk-search-input').keydown(function () {
+  $('.uk-search-input').keyup(function () {
     let input = $('.uk-search-input').val();
 
     let regex = new RegExp(input, 'i');
