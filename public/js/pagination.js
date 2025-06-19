@@ -33,7 +33,7 @@ $(() => {
   const queryParams = new URLSearchParams(window.location.search);
   const queryParamPageSize = queryParams.get('page_size');
   const localStoragePageSize = localStorage.getItem('page_size');
-  const pageSize = queryParamPageSize || localStoragePageSize || 1000;
+  const pageSize = queryParamPageSize || localStoragePageSize || 100;
   $('#page-size-select').val(pageSize);
 
   if (queryParamPageSize === null && localStoragePageSize !== null) {

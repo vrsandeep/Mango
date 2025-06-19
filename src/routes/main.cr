@@ -39,7 +39,7 @@ struct MainRouter
     get "/library" do |env|
       begin
         username = get_username env
-        page_size = env.params.query["page_size"]?.try &.to_i || 1000
+        page_size = env.params.query["page_size"]?.try &.to_i || 100
         raise "Page size must be a positive integer" if page_size <= 0
         current_page = env.params.query["page"]?.try &.to_i || 1
         search_query = env.params.query["search"]?.try &.strip || ""
@@ -69,7 +69,7 @@ struct MainRouter
       begin
         title = (Library.default.get_title env.params.url["title"]).not_nil!
         username = get_username env
-        page_size = env.params.query["page_size"]?.try &.to_i || 1000
+        page_size = env.params.query["page_size"]?.try &.to_i || 100
         raise "Page size must be a positive integer" if page_size <= 0
         current_page = env.params.query["page"]?.try &.to_i || 1
         search_query = env.params.query["search"]?.try &.strip || ""
