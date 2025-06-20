@@ -31,15 +31,17 @@ $(function () {
   const queryParams = new URLSearchParams(window.location.search);
   const searchValue = queryParams.get('search') || '';
   document.querySelector('.uk-search-input').value = searchValue;
-  document.querySelector('.uk-search-input').addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-      event.preventDefault(); // Prevent form submission
-      let input = this.value;
-      const url = `${location.protocol}//${location.host}${location.pathname}`;
-      const queryParams = new URLSearchParams(window.location.search);
-      queryParams.set('search', input);
-      const newURL = `${url}?${queryParams.toString()}`;
-      window.location.href = newURL;
-    }
-  });
+  document
+    .querySelector('.uk-search-input')
+    .addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent form submission
+        let input = this.value;
+        const url = `${location.protocol}//${location.host}${location.pathname}`;
+        const queryParams = new URLSearchParams(window.location.search);
+        queryParams.set('search', input);
+        const newURL = `${url}?${queryParams.toString()}`;
+        window.location.href = newURL;
+      }
+    });
 });

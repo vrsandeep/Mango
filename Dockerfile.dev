@@ -17,4 +17,3 @@ RUN apk add yarn yaml-static sqlite-static libarchive-dev libarchive-static acl-
 
 COPY --from=builder /Mango/mango ./mango-ex
 
-CMD ["./mango"]

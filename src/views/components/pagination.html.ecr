@@ -1,8 +1,8 @@
 <div class="uk-grid-small uk-padding uk-text-center">
     <% if current_page!=1 %>
-    <button id="prev-btn" class="uk-button uk-button-default" onclick="changePage(&lt;%= current_page - 1 %&gt;)">Previous page</button>
+    <button id="prev-btn" class="uk-button uk-button-default" onclick="changePage(<%= current_page - 1 %>)">Previous page</button>
     <% end %>
     <% if current_page!=total_pages %>
-    <button id="next-btn" class="uk-button uk-button-default" onclick="changePage(&lt;%= current_page + 1 %&gt;)">Next page</button>
+    <button id="next-btn" class="uk-button uk-button-default" onclick="changePage(<%= current_page + 1 %>)">Next page</button>
     <% end %>
 </div>
