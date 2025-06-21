@@ -39,7 +39,7 @@ struct MainRouter
     get "/library" do |env|
       begin
         username = get_username env
-        page_size = env.params.query["page_size"]?.try &.to_i || 1000
+        page_size = env.params.query["page_size"]?.try &.to_i || 100
         raise "Page size must be a positive integer" if page_size <= 0
         current_page = env.params.query["page"]?.try &.to_i || 1
         search_query = env.params.query["search"]?.try &.strip || ""
@@ -48,7 +48,7 @@ struct MainRouter
         get_and_save_sort_opt Library.default.dir
 
         titles = Library.default.sorted_titles username, sort_opt
-        titles = titles.select(&.title.includes?(search_query)) # apply search filter
+        titles = titles.select &.title.downcase.includes?(search_query.downcase) # apply search filter
 
         total_titles = titles.size
         total_pages = (titles.size / page_size).ceil.to_i
@@ -69,7 +69,7 @@ struct MainRouter
       begin
         title = (Library.default.get_title env.params.url["title"]).not_nil!
         username = get_username env
-        page_size = env.params.query["page_size"]?.try &.to_i || 1000
+        page_size = env.params.query["page_size"]?.try &.to_i || 100
         raise "Page size must be a positive integer" if page_size <= 0
         current_page = env.params.query["page"]?.try &.to_i || 1
         search_query = env.params.query["search"]?.try &.strip || ""
@@ -79,7 +79,7 @@ struct MainRouter
 
         sorted_titles = title.sorted_titles username, sort_opt
         entries = title.sorted_entries username, sort_opt
-        entries = entries.select(&.title.includes?(search_query)) # apply search filter
+        entries = entries.select(&.title.downcase.includes?(search_query.downcase)) # apply search filter
 
         total_pages = (entries.size / page_size).ceil.to_i
         if entries.size != 0 && current_page > 0

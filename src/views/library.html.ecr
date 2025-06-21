@@ -1,10 +1,25 @@
 <h2 class=uk-title>Library</h2>
-<p class="uk-text-meta"><%= total_titles %> titles found</p>
+<div class="uk-flex uk-flex-between uk-flex-middle uk-margin">
+  <p class="uk-text-meta uk-margin-remove-bottom"><%= total_titles %> titles found</p>
+  <% if total_titles!= 0 %>
+  <div class="uk-form-horizontal uk-margin-remove-vertical uk-flex uk-flex-middle">
+    <label for="page-size-select" style="width:70px;" class="uk-form-label uk-text-small">Per page:</label>
+    <select class="uk-select uk-width-auto" id="page-size-select" onchange="changePageSize(this.value)">
+      <option value="25">25</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+      <option value="500">500</option>
+      <option value="1000">1000</option>
+    </select>
+  </div>
+  <% end %>
+</div>
+
 <div class="uk-grid-small" uk-grid>
   <div class="uk-margin-bottom uk-width-3-4@s">
     <form class="uk-search uk-search-default">
       <span uk-search-icon></span>
-      <input class="uk-search-input" type="search" placeholder="Search">
+      <input class="uk-search-input" type="search" placeholder="Press enter to Search">
     </form>
   </div>
   <div class="uk-margin-bottom uk-width-1-4@s">

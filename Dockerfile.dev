@@ -1,0 +1,19 @@
+FROM 84codes/crystal:1.16.3-alpine AS builder
+
+WORKDIR /Mango
+
+RUN apk add yarn yaml-static sqlite-static libarchive-dev libarchive-static acl-static expat-static zstd-static lz4-static bzip2-static libjpeg-turbo-dev libpng-dev tiff-dev cmake
+
+COPY . .
+
+RUN make static || make static
+
+
+FROM library/alpine
+
+WORKDIR /
+
+RUN apk add yarn yaml-static sqlite-static libarchive-dev libarchive-static acl-static expat-static zstd-static lz4-static bzip2-static libjpeg-turbo-dev libpng-dev tiff-dev cmake
+
+COPY --from=builder /Mango/mango ./mango-ex
+
