@@ -48,7 +48,7 @@ struct MainRouter
         get_and_save_sort_opt Library.default.dir
 
         titles = Library.default.sorted_titles username, sort_opt
-        titles = titles.select(&.title.includes?(search_query)) # apply search filter
+        titles = titles.select &.title.downcase.includes?(search_query.downcase) # apply search filter
 
         total_titles = titles.size
         total_pages = (titles.size / page_size).ceil.to_i
@@ -79,7 +79,7 @@ struct MainRouter
 
         sorted_titles = title.sorted_titles username, sort_opt
         entries = title.sorted_entries username, sort_opt
-        entries = entries.select(&.title.includes?(search_query)) # apply search filter
+        entries = entries.select(&.title.downcase.includes?(search_query.downcase)) # apply search filter
 
         total_pages = (entries.size / page_size).ceil.to_i
         if entries.size != 0 && current_page > 0
