@@ -73,13 +73,15 @@ struct MainRouter
         raise "Page size must be a positive integer" if page_size <= 0
         current_page = env.params.query["page"]?.try &.to_i || 1
         search_query = env.params.query["search"]?.try &.strip || ""
+        search_query = search_query.downcase
 
         sort_opt = SortOptions.from_info_json title.dir, username
         get_and_save_sort_opt title.dir
 
         sorted_titles = title.sorted_titles username, sort_opt
+        sorted_titles = sorted_titles.select(&.title.downcase.includes?(search_query)) # apply search filter
         entries = title.sorted_entries username, sort_opt
-        entries = entries.select(&.title.downcase.includes?(search_query.downcase)) # apply search filter
+        entries = entries.select(&.title.downcase.includes?(search_query)) # apply search filter
 
         total_pages = (entries.size / page_size).ceil.to_i
         if entries.size != 0 && current_page > 0
