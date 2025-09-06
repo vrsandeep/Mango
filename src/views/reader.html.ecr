@@ -43,12 +43,12 @@
         <div x-cloak x-show="!loading && mode !== 'continuous'" class="uk-flex uk-flex-middle" :style="`height:${fitType === 'vert' ? '100vh' : ''}; min-width: fit-content;`">
 
           <img uk-img :class="{
-                               'uk-align-center': true, 
-                               'uk-animation-slide-left': flipAnimation === 'left', 
+                               'uk-align-center': true,
+                               'uk-animation-slide-left': flipAnimation === 'left',
                                'uk-animation-slide-right': flipAnimation === 'right'
                                }" :data-src="curItem.url" :width="curItem.width" :height="curItem.height" :id="curItem.id" @click="clickImage($event)" :style="`
-                                                                                                                                                                 width:${fitType === 'horz' ? '100vw' : 'auto'}; 
-                                                                                                                                                                 height:${fitType === 'vert' ? '100vh' : 'auto'}; 
+                                                                                                                                                                 width:${fitType === 'horz' ? '100vw' : 'auto'};
+                                                                                                                                                                 height:${fitType === 'vert' ? '100vh' : 'auto'};
                                                                                                                                                                  margin-bottom:0;
                                                                                                                                                                  max-width:${fitType === 'horz' ? '100%' : fitType === 'vert' ? '' : 'none' };
                                                                                                                                                                  max-height:${fitType === 'vert' ? '100%' : fitType === 'horz' ? '' : 'none'};
@@ -156,16 +156,21 @@
           <% if next_entry_url %>
             <a class="uk-button uk-button-default uk-margin-small-bottom uk-margin-small-right" href="<%= next_entry_url %>">Next Entry</a>
           <% end %>
-          <a class="uk-button uk-button-danger uk-margin-small-bottom uk-margin-small-right" href="<%= exit_url %>">Exit Reader</a>
+          <a id="exit-btn" class="uk-button uk-button-danger uk-margin-small-bottom uk-margin-small-right" href="<%= exit_url %>">Exit Reader</a>
         </div>
       </div>
     </div>
 
-    <script>
+    <script type="text/javascript">
       const base_url = "<%= base_url %>";
       const page = <%= page_idx %>;
       const tid = "<%= title.id %>";
       const eid = "<%= entry.id %>";
+      const page_size = localStorage.getItem('page_size') || "100";
+const exit_url = "<%= exit_url %>" + "?page_size=" + page_size
+
+      const ext_modal_link = document.getElementById('exit-btn');
+      ext_modal_link.href = exit_url;
     </script>
     <script src="<%= base_url %>ext/js/jquery.inview-1.1.2.min.js"></script>
     <%= render_component "uikit" %>

@@ -8,6 +8,8 @@ The original repo at https://github.com/getmango/Mango has stopped accepting new
 
 This repo will try to bring in some updates to keep the project alive for a little while longer. You can use the new docker image based on the code here at `vrsandeep/mango:latest`. The configuration and everything else is same as `hkalexling/mango` and is as follows
 
+For new feature developments, switchover to https://github.com/vrsandeep/Mango-go, a completely re-written fork of this project.
+
 # Mango
 
 [![Discord](https://img.shields.io/discord/855633663425118228?label=discord)](http://discord.com/invite/ezKtacCp9Q)
