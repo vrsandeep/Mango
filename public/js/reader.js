@@ -15,6 +15,7 @@ const readerComponent = () => {
     preloadLookahead: 3,
     enableRightToLeft: false,
     fitType: 'vert',
+    page_size: 100,
 
     /**
      * Initialize the component by fetching the page dimensions
@@ -45,6 +46,7 @@ const readerComponent = () => {
           this.longPages = avgRatio > 2;
           this.loading = false;
           this.mode = localStorage.getItem('mode') || 'continuous';
+          this.page_size = localStorage.getItem('page_size') || 100;
 
           // Here we save a copy of this.mode, and use the copy as
           // 	the model-select value. This is because `updateMode`
@@ -333,7 +335,7 @@ const readerComponent = () => {
      */
     exitReader(exitUrl) {
       this.saveProgress(this.items.length, () => {
-        this.redirect(exitUrl);
+        this.redirect(exitUrl + '?page_size=' + this.page_size);
       });
     },
 

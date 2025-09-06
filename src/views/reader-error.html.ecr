@@ -13,7 +13,7 @@
       <% if next_entry = entry.next_entry username %>
         <a class="uk-button uk-button-default" href="<%= base_url %>reader/<%= entry.book.id %>/<%= next_entry.id %>">Next Entry</a>
       <% end %>
-      <a class="uk-button uk-button-primary" href="<%= base_url %>book/<%= entry.book.id %>">Return to Title</a>
+      <a id="return-to-title-btn" class="uk-button uk-button-primary" href="<%= base_url %>book/<%= entry.book.id %>">Return to Title</a>
       </p>
     </div>
   </div>
@@ -21,9 +21,12 @@
 
 <% content_for "script" do %>
   <script>
+    const page_size = localStorage.getItem('page_size') || "100";
     UIkit.modal('#modal').show();
     UIkit.util.on('#modal', 'hide', function() {
-      location.href = "<%= base_url %>book/<%= entry.book.id %>";
+location.href = "<%= base_url %>book/<%= entry.book.id %>" + "?page_size=" + page_size
+      });
     });
+    document.getElementById('return-to-title-btn').href += "?page_size=" + page_size;
   </script>
 <% end %>

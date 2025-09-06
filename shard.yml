@@ -15,16 +15,16 @@ license: MIT
 dependencies:
   kemal:
     github: kemalcr/kemal
-    version: 1.6.0
+    version: 1.7.2
   kemal-session:
     github: kemalcr/kemal-session
-    version: 1.0.0
+    version: 1.3.0
   sqlite3:
     github: crystal-lang/crystal-sqlite3
-    version: 0.21.0
+    version: 0.22.0
   baked_file_system:
     github: schovi/baked_file_system
-    version: 0.10.0
+    version: 0.11.0
   archive:
     github: vrsandeep/archive.cr
     version: 0.6.0
