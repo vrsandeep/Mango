@@ -1,9 +1,35 @@
-name: Publish Dockerhub
+name: Release
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+    - 'v*'
+
 jobs:
-  update:
+  binary:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Get release version
+      id: get_version
+      run: echo "release-version=$(echo ${GITHUB_REF:10})" >> $GITHUB_OUTPUT
+    - name: Build binary
+      run: make static || make static
+    - name: Upload binary to artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: mango
+        path: mango
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          mango
+        generate_release_notes: true
+        tag_name: ${{ github.ref_name }}
+        draft: false
+        prerelease: false
+
+  dockerhub:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
